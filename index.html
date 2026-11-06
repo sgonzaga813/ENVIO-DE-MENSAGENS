@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WhatsApp em lotes | RH Elecnor Azulão</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#edf3f9;color:#173451;font:16px system-ui,sans-serif}main{max-width:1080px;margin:auto;padding:24px}section{background:white;padding:20px;border-radius:12px;margin:16px 0}h1,h2{margin-top:0}label{display:block;margin:10px 0}textarea{display:block;width:100%;padding:10px;min-height:120px;font:inherit}button,select,input{font:inherit}button{padding:8px 12px;border:1px solid #003f87;border-radius:6px;background:white;color:#003f87;cursor:pointer}button:disabled{opacity:.45;cursor:default}.primary{background:#003f87;color:white}.scroll{overflow:auto}table{width:100%;border-collapse:collapse}td,th{text-align:left;padding:8px;border-bottom:1px solid #dce6f0}small{color:#435b73}a{color:#003f87}
+.marca{display:flex;align-items:center;flex-wrap:wrap;gap:18px;background:white;border-radius:12px;border-top:5px solid #f57b00;padding:18px 20px}
+.marca img{width:150px;height:auto}.marca h1{margin:3px 0 0;color:#003f87}.marca small{font-weight:750;letter-spacing:.08em}
+:focus-visible{outline:3px solid #f57b00;outline-offset:3px}
+.previa{margin:18px 0;padding:14px;border:1px solid #dce6f0;border-radius:10px}
+.previa .scroll{max-height:300px}.previa th{position:sticky;top:0;background:#edf3f9}
+.conversa{display:flex;justify-content:flex-end;background:#edf3f9;padding:14px;margin-top:12px;border-radius:8px}
+#balao{white-space:pre-wrap;overflow-wrap:anywhere;min-width:0;max-width:65ch;background:#d9f3e5;padding:12px;border-radius:10px;margin:0}
+</style>
+
+<main>
+<header class="marca"><img src="elecnor-brasil.png" width="272" height="130" alt="Elecnor Brasil"><div><small>RH ELECNOR AZULÃO</small><h1>WhatsApp em lotes</h1></div></header>
+<section>
+<h2>Preparar envio</h2>
+<label>Contatos em Excel ou CSV <input id="arquivo" type="file" accept=".xlsx,.xls,.csv"></label>
+<small>Use as colunas Matrícula, Nome, Função, Telefone e Telefone 2. O cabeçalho CHAPA também é aceito como Matrícula.</small>
+<label for="mensagem">Mensagem do lote</label>
+<textarea id="mensagem" maxlength="2000" placeholder="Olá, {nome}! Digite aqui o aviso do RH.">*COMUNICADO – RETIRADA DO NOVO CARTÃO ALIMENTAÇÃO*
+
+Prezado(a) {nome}, {saudacao}!
+
+Informamos que a entrega do novo cartão alimentação será realizada na segunda-feira, 09/11/2026.
+
+Solicitamos que compareça para retirar o seu cartão. Contamos com a sua colaboração para que a entrega ocorra de forma organizada.
+
+Agradecemos a compreensão!
+
+RH – Elecnor | Azulão 950</textarea>
+<p><small>Use {nome} e {saudacao} para personalizar. Entre na conta do RH no WhatsApp Web antes de começar. Mantenha o painel e a aba de envio abertos durante o lote.</small></p>
+<div class="previa">
+<h2 id="titulo-lista">Resultados</h2>
+<p id="resumo"></p>
+<div class="scroll"><table><thead><tr><th>Matrícula</th><th>Nome</th><th>Função</th><th>Telefone</th><th>Telefone 2</th><th>Situação</th></tr></thead><tbody></tbody></table></div>
+</div>
+<div id="previa-mensagem" class="previa" hidden>
+<h2>Prévia da mensagem</h2>
+<p id="destinatario" aria-live="polite"></p>
+<button id="anterior" type="button">Anterior</button>
+<button id="seguinte" type="button">Ver outro colaborador</button>
+<div class="conversa"><p id="balao"></p></div>
+</div>
+<button id="login">Abrir WhatsApp Web</button>
+<button id="enviar" class="primary" disabled>Enviar lote</button>
+<button id="parar" disabled>Pausar após o contato atual</button>
+<p id="aviso" role="status">Abra pelo ícone da extensão instalada. Extraia o ZIP completo antes de instalar.</p>
+<small>Confira na conversa os envios sem confirmação antes de reenviar.</small>
+<p><button id="csv" disabled>Baixar resumo em Excel</button></p>
+</section>
+</main>
+<script src="xlsx.full.min.js"></script>
+<script src="painel.js"></script>
